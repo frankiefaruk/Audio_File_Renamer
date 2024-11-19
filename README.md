@@ -4,7 +4,8 @@ A Python GUI application for managing audio file names in a musical context. Thi
 1. Generate text files containing standardized audio file names based on MIDI note ranges
 2. Batch rename audio files according to MIDI note numbers and names
    
-![Screenshot 2024-11-16 at 4 08 09 pm](https://github.com/user-attachments/assets/5dcc3024-d374-4765-9593-b19d4a5c5a37)
+![audio_files-renamer_text_file_generator](https://github.com/user-attachments/assets/9d228538-2965-4b52-b9a5-fe2674a69971)
+
 
 
 ## Features
