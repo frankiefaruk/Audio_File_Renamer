@@ -28,7 +28,7 @@ A Python GUI application for managing audio file names in a musical context. Thi
 1. Clone this repository:
 
 bash
-git clone https://github.com/frankiefaruk/Audio_File_Rename.git
+git clone https://github.com/frankiefaruk/Audio_File_Renamer.git
 cd audio-file-renamer
 
 
