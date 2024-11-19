@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio File Renamer / Text File Generator</title>
+    <!-- Add Prism CSS and Theme -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <style>
+        :root {
+            --bg-color-dark: #212121;
+            --text-color-dark: #dcdcdc;
+            --bg-color-light: #f9f9f9;
+            --text-color-light: #333;
+            --highlight-color: #ffa500;
+            --icon-color-light: #666;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1100px;
+            margin: 20px auto;
+            background-color: var(--bg-color-light);
+            color: var(--text-color-light);
+        }
+        header {
+            background-color: var(--bg-color-light);
+            text-align: center;
+            padding: 20px;
+            height: auto;
+            position: relative;
+            margin: 0 auto;
+            width: 100%;
+        }
+        header img {
+            height: 50px;
+            display: block;
+            margin: 0 auto;
+            transition: filter 0.3s ease;
+        }
+        header img:hover {
+            filter: brightness(1.5);
+        }
+        .header-button {
+            background-color: var(--bg-color-light);
+            color: var(--text-color-light);
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            display: block;
+            margin: 10px auto;
+            transition: color 0.3s ease;
+        }
+        .header-button:hover {
+            color: #777;
+        }
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 50px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: var(--text-color-light);
+        }
+        .divider {
+            width: 90%;
+            margin: 0 auto;
+            border-top: 1px solid #777;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        pre {
+            border-radius: 6px;
+            padding: 1em;
+            margin: 1em 0;
+            overflow: auto;
+            background-color: #2d2d2d; /* Dark background for code blocks */
+            color: #ffffff; /* White text for code blocks */
+        }
+        code {
+            font-family: 'Consolas', 'Monaco', 'Andale Mono', monospace;
+            color: #ffffff; /* White text for inline code */
+            background-color: #2d2d2d; /* Dark background for inline code */
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        a {
+            color: var(--highlight-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #ffcc00;
+            text-decoration: underline;
+        }
+        a:visited {
+            color: #ff8c00;
+        }
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .copy-button {
+            background-color: var(--bg-color-light);
+            color: var(--text-color-light);
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .copy-button:hover {
+            color: #777;
+        }
+        .blog-content {
+            margin: 20px;
+        }
+        .blog-content img {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 600px) {
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                font-size: 14px;
+            }
+
+            header {
+                padding: 10px;
+            }
+
+            .header-button {
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header Section -->
+<header>
+    <img id="logo" src="https://raw.githubusercontent.com/frankiefaruk/logo/refs/heads/main/frank_faruk_logo_grey.svg" alt="Frank Faruk Logo">
+    <button class="header-button" onclick="window.location.href='https://frankfaruksampling.site'">FRANK FARUK SAMPLING</button>
+    <hr class="divider">
+    <button class="header-button" onclick="window.location.href='https://github.com/frankiefaruk/Audio_File_Renamer'">
+        <img id="code-icon" src="https://img.icons8.com/ios-filled/50/000000/code.png" alt="Code Icon" style="width: 24px; height: 24px; vertical-align: middle;">
+    </button>
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <img id="theme-icon" src="https://img.icons8.com/ios-glyphs/30/000000/sun--v1.png" alt="Light Mode Icon" style="width: 20px; height: 20px; vertical-align: middle;">
+    </button>
+</header>
+
+<!-- Main Content -->
+<div class="blog-content">
+    <h1>Audio File Renamer / Text File Generator</h1>
+    <p>A Python GUI application for managing audio file names in a musical context. This tool helps musicians and audio engineers to:</p>
+    <ol>
+        <li>Generate text files containing standardized audio file names based on MIDI note ranges</li>
+        <li>Batch rename audio files according to MIDI note numbers and names</li>
+    </ol>
+    <img src="image/audio_files-renamer_text_file_generator.png" alt="audio_files-renamer">
+    <h2>Features</h2>
+    <ul>
+        <li>User-friendly GUI interface</li>
+        <li>Live preview of file names</li>
+        <li>Support for various audio file formats (.wav, .aif, .aiff, .mp3)</li>
+        <li>Automatic backup creation before renaming files</li>
+        <li>MIDI note range validation</li>
+        <li>Standardized naming convention: <code>{MIDI_number}_{Note_name}_{Instrument_name}.wav</code></li>
+    </ul>
+    <h2>Installation</h2>
+    <ol>
+        <li>Clone this repository:</li>
+        <pre><code>git clone https://github.com/frankiefaruk/Audio_File_Rename.git
+cd audio-file-renamer</code></pre>
+        <li>Install required packages:</li>
+        <pre><code>pip install -r requirements.txt</code></pre>
+    </ol>
+    <h2>Usage</h2>
+    <ol>
+        <li>Run the application:</li>
+        <pre><code>python main_gui.py</code></pre>
+        <li>Using the Text File Generator:</li>
+        <ul>
+            <li>Enter instrument name (e.g., "Electric_Guitar")</li>
+            <li>Enter note range (e.g., "E2-E6")</li>
+            <li>Click "Submit"</li>
+            <li>Choose "Create Text File"</li>
+            <li>Select save location for the text file</li>
+        </ul>
+        <li>Using the File Renamer:</li>
+        <ul>
+            <li>Enter instrument name (e.g., "Electric_Guitar")</li>
+            <li>Enter note range (e.g., "E2-E6")</li>
+            <li>Click "Submit"</li>
+            <li>Choose "Select Folder to Rename"</li>
+            <li>Select folder containing audio files</li>
+            <li>Review the preview of changes</li>
+            <li>Click "Rename" to process files</li>
+        </ul>
+    </ol>
+    <h2>File Naming Convention</h2>
+    <p>The application uses the following naming convention:</p>
+    <p>Format: <code>{MIDI_number}_{Note_name}_{Instrument_name}.wav</code></p>
+    <p>Example: <code>60_C4_Electric_Guitar.wav</code></p>
+    <h2>Safety Features</h2>
+    <ul>
+        <li>Creates automatic backups before renaming files</li>
+        <li>Validates note ranges before processing</li>
+        <li>Preview changes before applying</li>
+        <li>Error handling and user feedback</li>
+    </ul>
+    <h2>Contributing</h2>
+    <ol>
+        <li>Fork the repository</li>
+        <li>Create your feature branch (<code>git checkout -b feature/AmazingFeature</code>)</li>
+        <li>Commit your changes (<code>git commit -m 'Add some AmazingFeature'</code>)</li>
+        <li>Push to the branch (<code>git push origin feature/AmazingFeature</code>)</li>
+        <li>Open a Pull Request</li>
+    </ol>
+    <h2>License</h2>
+    <p>This project is licensed under the MIT License - see the LICENSE file for details.</p>
+</div>
+
+  <!-- Footer Section -->
+    <hr class="divider">
+    <footer style="text-align: center; margin: 20px 0; color: var(--text-color-light); font-size: 14px;">
+        Design by ChatGPT / Claude.ai / Gemini and <a href="https://frankfaruksampling.site" target="_blank">Frank Faruk Sampling</a>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script>
+        function copyToClipboard(selector) {
+            const codeBlock = document.querySelector(selector);
+            const textArea = document.createElement('textarea');
+            textArea.value = codeBlock.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                alert('Code copied to clipboard!');
+            } catch (err) {
+                console.error('Failed to copy text', err);
+            }
+            document.body.removeChild(textArea);
+        }
+
+        function toggleTheme() {
+            const root = document.documentElement;
+            const themeToggle = document.querySelector('.theme-toggle');
+            const logo = document.getElementById('logo');
+            const codeIcon = document.getElementById('code-icon');
+            const themeIcon = document.getElementById('theme-icon');
+            const isLightMode = getComputedStyle(root).getPropertyValue('--bg-color-light').trim() === '#f9f9f9';
+
+            if (isLightMode) {
+                // Switch to dark mode
+                root.style.setProperty('--bg-color-light', '#212121');
+                root.style.setProperty('--text-color-light', '#dcdcdc');
+                themeIcon.src = 'https://img.icons8.com/ios-glyphs/30/dcdcdc/moon-symbol.png'; // Dark mode icon
+                themeIcon.alt = 'Dark Mode Icon';
+                logo.src = 'https://raw.githubusercontent.com/frankiefaruk/logo/refs/heads/main/frank_faruk_logo_white.svg';
+                codeIcon.src = 'https://img.icons8.com/ios-filled/50/dcdcdc/code.png';
+            } else {
+                // Switch to light mode
+                root.style.setProperty('--bg-color-light', '#f9f9f9');
+                root.style.setProperty('--text-color-light', '#333');
+                themeIcon.src = 'https://img.icons8.com/ios-glyphs/30/000000/sun--v1.png'; // Light mode icon
+                themeIcon.alt = 'Light Mode Icon';
+                logo.src = 'https://raw.githubusercontent.com/frankiefaruk/logo/refs/heads/main/frank_faruk_logo_grey.svg';
+                codeIcon.src = 'https://img.icons8.com/ios-filled/50/000000/code.png';
+            }
+        }
+    </script>
+</body>
+</html>
