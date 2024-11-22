@@ -149,6 +149,7 @@ class AudioFileRenamerTextFileGenerator:
                         elif start_midi > end_midi:
                             preview_text = "Start note must be lower than end note"
                         else:
+                            preview_text = ""  # Initialize preview_text
                             for midi_num in range(start_midi, end_midi + 1):
                                 note_name = self.note_extractor.midi_to_note[midi_num]
                                 new_name = f"{midi_num}_{note_name}_{base_name}.wav"
